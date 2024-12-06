@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classification Result</title>
+</head>
+<body>
+    <h1>Result</h1>
+    <p><strong>Email Content:</strong> {{ review }}</p>
+    <p><strong>Prediction:</strong> {{ prediction }}</p>
+    <p><strong>Probability:</strong> {{ probability }}%</p>
+    <form action="{{ url_for('spam_feedback') }}" method="POST">
+        <input type="hidden" name="review" value="{{ review }}">
+        <label for="feedback">Is this classification correct?</label><br>
+        <input type="radio" id="ham" name="feedback" value="Ham">
+        <label for="ham">Ham</label><br>
+        <input type="radio" id="spam" name="feedback" value="Spam">
+        <label for="spam">Spam</label><br>
+        <input type="submit" value="Submit Feedback">
+    </form>
+    <br>
+    <a href="{{ url_for('spam_home') }}">Go back</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Your Feature</title>
+</head>
+<body>
+    <h1>Welcome to the Flask Application</h1>
+    <p>Select one of the following options:</p>
+    <form action="{{ url_for('spam_home') }}">
+        <button type="submit">Go to Spam Classifier</button>
+    </form>
+    <form action="{{ url_for('llm_chat_home') }}">
+        <button type="submit">Go to LLM Chat</button>
+    </form>
+</body>
+</html>

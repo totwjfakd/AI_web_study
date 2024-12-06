@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .chat-container {
+            width: 100%;
+            max-width: 800px; /* 채팅창 가로 크기 증가 */
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .chat-header {
+            background: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            font-size: 1.5rem; /* 헤더 폰트 크기 증가 */
+        }
+        .chat-box {
+            padding: 15px;
+            height: 500px; /* 채팅창 높이 증가 */
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #fafafa;
+        }
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 1rem; /* 메시지 폰트 크기 증가 */
+            line-height: 1.4;
+        }
+        .user-message {
+            align-self: flex-end;
+            background: #4caf50;
+            color: #fff;
+        }
+        .bot-message {
+            align-self: flex-start;
+            background: #e0e0e0;
+            color: #333;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background: #fff;
+        }
+        .chat-input textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+            outline: none;
+        }
+        .chat-input button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+        .chat-input button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>LLM Chat</h1>
+    <div class="chat-container">
+        <div class="chat-header">Chat with LLM</div>
+        <div class="chat-box" id="chat-box">
+            {% for message in chat_history %}
+                <div class="chat-message {{ 'user-message' if message.sender == 'user' else 'bot-message' }}">
+                    {{ message.message }}
+                </div>
+            {% endfor %}
+        </div>
+        <form class="chat-input" action="{{ url_for('llm_chat_response') }}" method="POST">
+            <textarea id="user_message" name="user_message" rows="1" placeholder="Type your message here..."></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+
+    <script>
+        // 채팅 내역 스크롤을 항상 가장 밑으로 유지
+        const chatBox = document.getElementById('chat-box');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    </script>
+</body>
+</html>

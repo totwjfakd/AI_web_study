@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spam Classifier</title>
+</head>
+<body>
+    <h1>Spam Classifier</h1>
+    <form action="{{ url_for('spam_result') }}" method="POST">
+        <label for="review">Enter your email content:</label><br>
+        <textarea id="review" name="review" rows="5" cols="50"></textarea><br><br>
+        <input type="submit" value="Classify">
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
