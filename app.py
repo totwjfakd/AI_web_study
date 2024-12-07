@@ -16,7 +16,7 @@ db_path = os.path.join(cur_dir, 'spam_ham.sqlite')
 
 # Ollama API 설정
 OLLAMA_API_URL = "http://localhost:11434/api/chat"  # Ollama API 기본 URL
-LLAMA_MODEL = "llama3"  # 사용할 모델 이름 (llama3로 대체 가능)
+LLAMA_MODEL = "llama3"  # 사용할 모델 이름 
 
 def query_llama(message):
     """Ollama API 호출 및 스트리밍 응답 처리"""
